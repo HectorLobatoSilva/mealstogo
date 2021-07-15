@@ -106,6 +106,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2EAB12795F004C719263F99A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +130,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				E68FA6200A6F1C62DF04598D /* Pods */,
+				2EAB12795F004C719263F99A /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
