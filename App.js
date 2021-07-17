@@ -15,16 +15,19 @@ import { theme } from './src/infraestructure/theme';
 import { RestaurantsContextProvider } from './src/services/restaurants/restaurants.context';
 import { LocationContextProvider } from './src/services/location/location.context';
 import Navigation from './src/infraestructure/navigation';
+import FavouritesContextProvider from './src/services/favourites/favourites.context';
 
 const App = () => {
     return (
         <>
             <ThemeProvider theme={theme}>
-                <LocationContextProvider>
-                    <RestaurantsContextProvider>
-                        <Navigation />
-                    </RestaurantsContextProvider>
-                </LocationContextProvider>
+                <FavouritesContextProvider>
+                    <LocationContextProvider>
+                        <RestaurantsContextProvider>
+                            <Navigation />
+                        </RestaurantsContextProvider>
+                    </LocationContextProvider>
+                </FavouritesContextProvider>
             </ThemeProvider>
         </>
     );

@@ -8,6 +8,7 @@ export const restaurantsRequest = (location = '') => {
         }
         const mappedResults = mock.results.map(restaurant => {
             return {
+                placeId: restaurant.placeId,
                 name: restaurant.name,
                 icon: restaurant.icon,
                 photos: [
@@ -20,6 +21,7 @@ export const restaurantsRequest = (location = '') => {
                 rating: restaurant.rating,
                 isClosedTemporarily:
                     restaurant.businessStatus === 'CLOSED_TEMPORARILY',
+                geometry: restaurant.geometry,
             };
         });
         resolve(mappedResults);
