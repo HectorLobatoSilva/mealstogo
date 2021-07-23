@@ -15,6 +15,7 @@ import { RestaurantsContext } from '../../../services/restaurants/restaurants.co
 import Search from './../components/search.component';
 import { FavouritesContext } from '../../../services/favourites/favourites.context';
 import FavouritesBar from '../../../components/favourites/favourites-bar.components';
+import { FadeInView } from '../../../components/animations/fade.animation';
 
 const SafeArea = styled(SafeAreaView)`
     flex: 1;
@@ -69,9 +70,11 @@ const RestaurantsScreen = ({ navigation }) => {
                     data={restaurants}
                     renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => handlePress(item)}>
-                            <Spacer position="bottom" size="large">
-                                <RestaurantInfoCard restaurant={item} />
-                            </Spacer>
+                            <FadeInView>
+                                <Spacer position="bottom" size="large">
+                                    <RestaurantInfoCard restaurant={item} />
+                                </Spacer>
+                            </FadeInView>
                         </TouchableOpacity>
                     )}
                     keyExtractor={item => item.name}
