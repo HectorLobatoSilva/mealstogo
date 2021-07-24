@@ -6,6 +6,7 @@ import {
     createStackNavigator,
     CardStyleInterpolators,
 } from '@react-navigation/stack';
+import CameraScreen from '../../features/settings/screens/camera.screen';
 
 const SettingsStack = createStackNavigator();
 
@@ -27,6 +28,7 @@ const SettingsNavigator = ({ route, navigation }) => {
                 name="Favourites"
                 component={FavouritesScreen}
             />
+            <SettingsStack.Screen name="Camera" component={CameraScreen} />
         </SettingsStack.Navigator>
     );
 };
