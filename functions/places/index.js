@@ -1,18 +1,10 @@
-import { mocks, mockImages } from './mock/index';
-import camilize from 'camelize';
-export const restaurantsRequest = (location = '') => {
-    // const url = '';
-    // try {
-    //     const response = await fetch(url);
-    //     const data = await response.json();
-    //     return data;
-    // } catch (err) {
-    //     console.log(err);
-    // }
-    return new Promise((resolve, reject) => {
-        const mock = camilize(mocks[location]);
+const { mocks } = require('./mock');
+module.exports.placesRequest = (request, response, client) => {
+    const { location, isMock } = request.params;
+    if (isMock === 'true') {
+        const mock = mocks[location];
         if (!mock) {
-            reject('No founded location');
+            response.status(404).send('No location found');
         }
         const mappedResults = mock.results.map(restaurant => {
             return {
@@ -32,6 +24,21 @@ export const restaurantsRequest = (location = '') => {
                 geometry: restaurant.geometry,
             };
         });
-        resolve(mappedResults);
-    });
+        response.json(mappedResults);
+    }
+    client
+        .placesNearBy({
+            params: {
+                location,
+                raius: 1500,
+                type: 'restaurant',
+                key: 'API key google',
+            },
+            timeout: 1000,
+        })
+        .then(res => response.json(res.data))
+        .catch(err => {
+            response.status(400);
+            return response.send(err.response.data.error_message);
+        });
 };
